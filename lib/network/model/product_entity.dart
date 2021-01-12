@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class ProductEntity {
   final int id;
   final String title;
@@ -31,12 +29,9 @@ class ProductEntity {
       this.total_calories});
 
   factory ProductEntity.fromJson(Map<String, dynamic> json) {
-    var ingredients = (json["ingredients"] as List)
-        .map((e) => IngredientEntity.fromJson(e))
-        .toList();
+    var ingredients = (json["ingredients"] as List).map((e) => IngredientEntity.fromJson(e)).toList();
 
-    var steps =
-        (json["steps"] as List).map((e) => StepsEntity.fromJson(e)).toList();
+    var steps = (json["steps"] as List).map((e) => StepsEntity.fromJson(e)).toList();
 
     return ProductEntity(
       id: json['id'],
@@ -64,13 +59,7 @@ class IngredientEntity {
   final int amount_type; // TODO: Need understand types
   final bool status;
 
-  IngredientEntity(
-      {this.id,
-      this.ingredient,
-      this.amount,
-      this.amount_count,
-      this.amount_type,
-      this.status});
+  IngredientEntity({this.id, this.ingredient, this.amount, this.amount_count, this.amount_type, this.status});
 
   factory IngredientEntity.fromJson(Map<String, dynamic> json) {
     return IngredientEntity(

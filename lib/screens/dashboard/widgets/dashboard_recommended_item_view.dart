@@ -47,93 +47,103 @@ class DashboardRecommendedItemView extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(8),
         child: Container(
-            height: 180,
-            width: 220,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // Text Block
-                SizedBox.expand(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 42),
-                    padding: EdgeInsets.only(left: 8, top: 4, right: 8, bottom: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white30,
-                          blurRadius: 2,
-                        ),
-                      ],
-                    ),
-                    child: Container(
-                      margin: EdgeInsets.only(top: 56),
-                      child: Column(
-                        children: [
-                          Text(
-                            item.title,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
+            height: 190,
+            constraints: BoxConstraints(minWidth: 180, maxWidth: 200),
+            padding: EdgeInsets.all(8),
+            child: Material(
+              type: MaterialType.card,
+              elevation: 8,
+              borderRadius: BorderRadius.circular(8),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Container(
+                      child: ClipOval(
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                          child: Hero(
+                            tag: "product_image_${item.id}",
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: item.image,
+                              placeholder: (context, url) => CircularProgressIndicator(),
+                              errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.all(8),
-                            child: Text(
-                              item.tags,
-                              textAlign: TextAlign.right,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    // Text Block
+                    Container(
+                      margin: EdgeInsets.only(top: 16),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Hero(
+                              tag: "product_name_${item.id}",
+                              child: Text(
+                                item.title,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-                // Image
-                Container(
-                  transform: Matrix4.translationValues(0, -48, 0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 2,
-                      ),
-                    ],
-                  ),
-                  child: ClipOval(
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      child: Hero(
-                        tag: "product_image_${item.id}",
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: item.image,
-                          placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
+                            // Container(
+                            //   padding: EdgeInsets.all(8),
+                            //   child: Hero(
+                            //     tag: "product_types_${item.id}",
+                            //     child: badgeItems(item),
+                            //   ),
+                            // ),
+                          ],
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             )),
       ),
       onTap: () {
         Get.to(DetailScreen(entity: item));
       },
+    );
+  }
+
+  Widget badgeItems(ProductEntity item) {
+    List<Widget> rowItems = List();
+    var tags = item.tags.split(",");
+    tags.forEach((element) {
+      rowItems.add(
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.green[400],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: Text(
+              element,
+              textAlign: TextAlign.right,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 12,
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+    return Row(
+      children: rowItems,
     );
   }
 }

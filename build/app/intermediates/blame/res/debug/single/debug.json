@@ -4,12 +4,12 @@
         "source": "/Users/s.neiko/.gradle/caches/transforms-2/files-2.1/44b1706abe044cd42dcac5be863451ed/core-1.1.0/res/layout/notification_template_part_chronometer.xml"
     },
     {
-        "merged": "/Users/s.neiko/FlutterProjects/cook_book/build/app/intermediates/res/merged/debug/layout-v16_notification_template_custom_big.xml.flat",
-        "source": "/Users/s.neiko/.gradle/caches/transforms-2/files-2.1/44b1706abe044cd42dcac5be863451ed/core-1.1.0/res/layout-v16/notification_template_custom_big.xml"
-    },
-    {
         "merged": "/Users/s.neiko/FlutterProjects/cook_book/build/app/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
         "source": "/Users/s.neiko/FlutterProjects/cook_book/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/s.neiko/FlutterProjects/cook_book/build/app/intermediates/res/merged/debug/layout-v16_notification_template_custom_big.xml.flat",
+        "source": "/Users/s.neiko/.gradle/caches/transforms-2/files-2.1/44b1706abe044cd42dcac5be863451ed/core-1.1.0/res/layout-v16/notification_template_custom_big.xml"
     },
     {
         "merged": "/Users/s.neiko/FlutterProjects/cook_book/build/app/intermediates/res/merged/debug/drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",

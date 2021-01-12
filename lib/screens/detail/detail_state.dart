@@ -8,7 +8,14 @@ abstract class DetailState extends Equatable {
 
 // MARK: General states
 class DetailState_Info extends DetailState {}
+
 class DetailState_InProgress extends DetailState {}
+
+class DetailState_Favorite extends DetailState {
+  final bool isFavorite;
+
+  DetailState_Favorite(this.isFavorite);
+}
 
 class DetailState_OnError extends DetailState {
   final String error;

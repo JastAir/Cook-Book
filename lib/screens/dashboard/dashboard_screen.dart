@@ -1,3 +1,4 @@
+import 'package:cook_book/common/widgets/appbar_circle_shape.dart';
 import 'package:cook_book/common/widgets/loading_container_view.dart';
 import 'package:cook_book/network/model/product_entity.dart';
 import 'package:cook_book/network/repository.dart';
@@ -21,7 +22,12 @@ class DashboardScreen extends StatelessWidget {
       create: (_) => cubit..fetchAll(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Cook Book"),
+          title: Text(
+            "COOK BOOK",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+          elevation: 0,
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(54),
             child: Container(
@@ -88,18 +94,31 @@ class DashboardScreen extends StatelessWidget {
   }
 
   Widget _content() {
-    return Container(
-      padding: EdgeInsets.only(top: 8),
-      child: Column(
-        children: [
-          Container(
-            child: DashboardRecommendedItemView(),
+    return Stack(
+      fit: StackFit.passthrough,
+      alignment: Alignment.topCenter,
+      children: [
+        Container(
+          width: double.infinity,
+          height: 300,
+          child: CustomPaint(
+            painter: AppBarCircleShape(),
           ),
-          Container(
-            child: DashboardMenuView(),
+        ),
+        Container(
+          padding: EdgeInsets.only(top: 8),
+          child: Column(
+            children: [
+              Container(
+                child: DashboardRecommendedItemView(),
+              ),
+              Container(
+                child: DashboardMenuView(),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

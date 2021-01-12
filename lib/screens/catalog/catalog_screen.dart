@@ -109,16 +109,22 @@ class CatalogScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    product.title,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    textAlign: TextAlign.left,
+                  Hero(
+                    tag: "product_name_${product.id}",
+                    child: Text(
+                      product.title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      textAlign: TextAlign.left,
+                    ),
                   ),
-                  Text(
-                    "${product.total_calories} калл.",
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.right,
+                  Hero(
+                    tag: "product_kkal_${product.id}",
+                    child: Text(
+                      "${product.total_calories} калл.",
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.right,
+                    ),
                   ),
                   Text(
                     product.tags,

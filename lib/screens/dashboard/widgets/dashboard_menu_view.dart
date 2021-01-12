@@ -28,51 +28,59 @@ class DashboardMenuView extends StatelessWidget {
   Widget _list(List<CategoryEntity> items) {
     return Container(
       padding: EdgeInsets.all(16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Меню",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 8),
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                return ExpansionTile(
-                  leading: ClipOval(
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: items[index].pictureUrl,
-                      placeholder: (context, url) => CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                    ),
-                  ),
-                  title: Container(
-                    child: Text(
-                      items[index].title,
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
+      child: Material(
+        type: MaterialType.card,
+        elevation: 8,
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Меню",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 8),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return ExpansionTile(
+                      leading: ClipOval(
+                        child: CachedNetworkImage(
+                          fit: BoxFit.cover,
+                          imageUrl: items[index].pictureUrl,
+                          placeholder: (context, url) => CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
                       ),
-                    ),
-                  ),
-                  subtitle: Text(
-                    "Рецептов: ${items[index].recieptsCount}",
-                    textAlign: TextAlign.right,
-                  ),
-                  children: _subcategoryList(context: context, items: items[index].subcategories),
-                  tilePadding: EdgeInsets.all(0),
-                );
-              },
-            ),
+                      title: Container(
+                        child: Text(
+                          items[index].title,
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                      subtitle: Text(
+                        "Рецептов: ${items[index].recieptsCount}",
+                        textAlign: TextAlign.right,
+                      ),
+                      children: _subcategoryList(context: context, items: items[index].subcategories),
+                      tilePadding: EdgeInsets.all(0),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -99,7 +107,22 @@ class DashboardMenuView extends StatelessWidget {
                         ),
                       ),
                       Spacer(),
-                      Text("${e.recipesCount}"),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.red[400],
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            "${e.recipesCount}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
